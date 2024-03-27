@@ -1,0 +1,149 @@
+<!DOCTYPE	html> 
+
+<html>		
+<head>	
+<html xmlns:th="http://www.thymeleaf.org">	
+	<meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Results System</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width"/>
+    <base href="/"/>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/font-awesome/css/font-awesome.min.css"></link>		
+	<meta	charset="utf-8">				
+	<meta	http-equiv="X-UA-Compatible"	content="IE=edge">				
+	<meta	name="viewport"	content="width=device-width,	initial-scale=1">				
+	
+				<link	rel="stylesheet"	href="css/bootstrap.css">
+				<link	rel="stylesheet"	href="css/bootstrap.min.css">
+				<link	rel="stylesheet"	href="css/bootstrap-grid.css">
+				<link	rel="stylesheet"	href="css/bootstrap-grid.min.css">
+				<link	rel="stylesheet"	href="css/bootstrap-reboot.min.css">
+				<link	rel="stylesheet"	href="css/bootstrap-reboot.css">
+				<link	rel="stylesheet"	href="css/navButton.css">
+				 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+				<!--[if	lt	IE	9]>						
+				<script	src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"> </script>						
+				<script	src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"> </script>
+				<script src="js/navButton.js"></script>				
+				<![endif]-->	
+				
+				<style>
+					.coloring span  {
+						color:red;
+					}
+					
+				</style>		
+</head>		
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">
+      	<div class="row">
+			<div class="col-md-3">
+				<img alt="Brand" src="/images/unical5.png" class="img-responsive">
+			</div>
+				<div class="col-md-9">
+					<div class="row ">
+						<h1>University of Calabar, Calabar</h1>
+					</div>
+					<div class="row">
+						<h5>Results Processing System</h5>
+					</div>
+				</div>
+       </div>
+      </a>
+    </div>
+  </div>
+</nav>
+	<div class="container">
+		
+			
+			<div class="row text-center">
+				<div class="col-md-3 btn btn-danger">
+					<a href="/" class="text-white">Home</a>
+				</div>
+				<div class="col-md-3 btn btn-danger">
+					<a href="/sign-in" class="text-white">Login</a>
+				</div>
+				<div class="col-md-3 btn btn-danger">
+					<a href="#" class="text-white">User Guide</a>
+				</div>
+				<div class="col-md-3 btn btn-danger">
+					<a href="#" class="text-white">About</a>
+				</div>
+			</div>
+		
+	</div>
+	<br>
+	
+	<div class="container">
+	
+		<div class="row col-md-12">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+			<table>
+				<tr th:each="pgc : ${pgcs}">
+					<td>You are welcome </td>
+               		<td th:text="${pgc.title}">...</td>
+               		<td></td><td th:text="${pgc.surname}">...</td><td>,</td>
+               		<td th:text="${pgc.firstname}">...</td>
+               		<td th:text="${pgc.othername}">...</td>
+               		<td> to Admin's Page</td>
+               	</tr></table>	
+           	</div>
+           	<div class="col-md-2">
+           	
+           	</div>
+		</div>
+	</div>
+	<div class="col-md-12">
+	<div class="col-md-3">
+		<nav	class="navbar	navbar-default	navbar-fixed-top">		
+		<div	class="navbar-header">				
+			<p>click here below!</p>				
+			<button	type="button"	class="navbar-toggle	collapsed"	data-toggle="collapse"	data-target="#nav-menu"	aria-expanded="false">						
+			<span	class="sr-only">Toggle	navigation</span>						
+			<span	class="icon-bar"></span>						
+			<span	class="icon-bar"></span>						
+			<span	class="icon-bar"></span>				
+			</button>		
+			</div>
+		<div	id="nav-menu"	class="collapse	navbar-collapse	navbar-right">						
+			<ul	class="nav	navbar-nav">		
+				<li><a	href="unitForm" class="btn	btn-success	btn-block">Department</a></li>				
+				<li><a	href="newUserForm" class="btn	btn-success	btn-block">New User</a></li>
+									
+			</ul>
+		</div> 
+	</nav>	
+	</div>
+	<div class="col-md-9">
+	
+	</div>
+	</div>	
+	<div class="container">
+      <footer class="jumbotron my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2017-2018 Company Name</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Privacy</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+      </footer></div>
+    
+	<script	src="js/jquery-3.3.1.js"></script>
+	<script>window.jQuery || document.write('<script src="js/jquery-3.3.1.js"><\/script>')</script>				
+	<script	src="js/bootstrap.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/navButton.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	
+</body> 
+</html>

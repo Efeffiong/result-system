@@ -1,0 +1,178 @@
+<!DOCTYPE	html> 
+
+<html xmlns:th="http://www.thymeleaf.org">		
+<head>		
+	<meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Results System</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width"/>
+    <base href="/"/>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/font-awesome/css/font-awesome.min.css"></link>		
+	<meta	charset="utf-8">				
+	<meta	http-equiv="X-UA-Compatible"	content="IE=edge">				
+	<meta	name="viewport"	content="width=device-width,	initial-scale=1">				
+	
+				<link	rel="stylesheet"	href="css/bootstrap.css">
+				<link	rel="stylesheet"	href="css/bootstrap.min.css">
+				<link	rel="stylesheet"	href="css/bootstrap-grid.css">
+				<link	rel="stylesheet"	href="css/bootstrap-grid.min.css">
+				<link	rel="stylesheet"	href="css/bootstrap-reboot.min.css">
+				<link	rel="stylesheet"	href="css/bootstrap-reboot.css">
+				<link	rel="stylesheet"	href="css/dropdownButton.css">
+				<!--[if	lt	IE	9]>						
+				<script	src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"> </script>						
+				<script	src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"> </script>				
+				<![endif]-->	
+				
+				<style>
+					.coloring span  {
+						color:red;
+					}
+					
+					label {
+						color:blue;
+					}
+				</style>		
+</head>		
+<body>
+	<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">
+      	<div class="row">
+			<div class="col-md-3">
+				<img alt="Brand" src="/images/unical5.png" class="img-responsive">
+			</div>
+			<div class="col-md-9">
+				<div class="row ">
+					<h1>University of Calabar, Calabar</h1>
+				</div>
+				<div class="row">
+					<h5>Results Processing System</h5>
+				</div>
+			</div>
+       </div>
+      </a>
+    </div>
+  </div>
+</nav>
+		<div class="container">
+			<div class="row text-center">
+				<div class="col-md-3 btn btn-danger">
+					<a href="/" class="text-white">Home</a>
+				</div>
+				<div class="col-md-3 btn btn-danger">
+					<a href="/sign-in" class="text-white">Login</a>
+				</div>
+				<div class="col-md-3 btn btn-danger">
+					<a href="#" class="text-white">User Guide</a>
+				</div>
+				<div class="col-md-3 btn btn-danger">
+					<a href="#" class="text-white">About</a>
+				</div>
+			</div>
+		
+	</div>
+		<br>
+	<div class="container">
+		<div class="row">
+			
+			<div class="btn btn-success col-md-2"><a href="/back" class="text-white">Back</a></div>
+		</div>
+	</div>
+	<br>
+	<div class="container">
+		<div class="error text-danger">
+			<span th:text="${errorMessage}"></span>
+		</div>
+		<div class="success text-success">
+			<span th:text="${successMessage}"></span>
+		</div>
+	</div>
+	<br>
+			<div class="container">
+		<h1>Submit Result</h1>
+		
+		
+		
+		<form action="#" th:action="@{/uploadLecturerResult}" th:object="${lecturerResult}" method="POST" 
+		class="form-horizontal coloring" enctype="multipart/form-data">
+			<input type="hidden" name="lecturerResultId" value="${lecturerResultId}"/>
+			<input type="hidden" name="lecturerSurname" value="${surname}"/>
+			<input type="hidden" name="lecturerFirstname" value="${firstname}"/>
+			<input type="hidden" name="lecturerMiddlename" value="${middlename}"/>
+			<input type="hidden" name="status" value="Not compile"/>
+			<input type="hidden" name="resultUploadDate" value="${currentDate}"/>
+			<input type="hidden" name="accessedDate" value="${currentDate}"/>
+			<div class="row col-md-12">
+				<div class="col-md-6">
+					<label>Select Your Course Title</label>
+					<select name="courseId" class="form-control">
+						
+						<option th:each="course : ${courseInfo}" 
+							th:value="${course.courseId}" 
+							th:text="${course.courseTitle}">	
+						</option>
+					</select>
+					
+				</div>
+			
+				<div class="col-md-6">
+					<label>Select Excel Result file</label>
+					<input type="file" id="resultFile" class="form-control" accept=".xlsx, .xls, .csv" name="resultFile" />
+					
+				</div>
+			</div>
+			
+			<br>
+			<div class="col-md-4">
+				<input type="submit" class="btn btn-primary btn-block" value="Submit Result"/>
+			</div>
+		</form>
+		</div>
+			
+	
+	<div class="container">
+      <footer class="jumbotron my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2017-2018 Company Name</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Privacy</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+      </footer>
+	</div>
+    
+	<script	src="js/jquery-3.3.1.js"></script>
+	<script>window.jQuery || document.write('<script src="js/jquery-3.3.1.js"><\/script>')</script>				
+	<script	src="js/bootstrap.js"></script>
+	<script src="js/bootstrap.min.js"></script>	
+	<script src="js/myFunction.js"></script>	
+	<script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+    </script>	
+</body> 
+</html>

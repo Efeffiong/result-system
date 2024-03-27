@@ -1,0 +1,467 @@
+<!DOCTYPE	html> 
+
+<html xmlns:th="http://www.thymeleaf.org">		
+<head>				
+	<meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Results System</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width"/>
+    <base href="/"/>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/webjars/font-awesome/css/font-awesome.min.css"></link>
+	<meta	charset="utf-8">				
+	<meta	http-equiv="X-UA-Compatible"	content="IE=edge">				
+	<meta	name="viewport"	content="width=device-width,	initial-scale=1">				
+	
+				<link	rel="stylesheet"	href="css/bootstrap.css">
+				<link	rel="stylesheet"	href="css/bootstrap.min.css">
+				<link	rel="stylesheet"	href="css/bootstrap-grid.css">
+				<link	rel="stylesheet"	href="css/bootstrap-grid.min.css">
+				<link	rel="stylesheet"	href="css/bootstrap-reboot.min.css">
+				<link	rel="stylesheet"	href="css/bootstrap-reboot.css">
+				<!--[if	lt	IE	9]>						
+				<script	src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"> </script>						
+				<script	src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"> </script>				
+				<![endif]-->
+				
+				<style>
+					.coloring span  {
+						color:red;
+					}
+					.table {
+						 counter-reset: serial-number; /* Set the serial number counter to 0 */
+						}
+						.table td:first-child:before {
+						 counter-increment: serial-number; /* Increment the serial number counter */
+						 content: counter(serial-number); /* Display the counter */
+						}
+				</style>			
+</head>		
+<body>
+	<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">
+      	<div class="row">
+			<div class="col-md-3">
+				<img alt="Brand" src="/images/unical5.png" class="img-responsive">
+			</div>
+				<div class="col-md-9">
+					<div class="row ">
+						<h1>University of Calabar, Calabar</h1>
+					</div>
+					<div class="row">
+						<h5>Results Processing System</h5>
+					</div>
+				</div>
+       	</div>
+      </a>
+    </div>
+  </div>
+</nav>
+		<div class="container">
+			<div class="row text-center">
+				<div class="col-md-3 btn btn-danger">
+					<a href="/" class="text-white">Home</a>
+				</div>
+				<div class="col-md-3 btn btn-danger">
+					<a href="/sign-in" class="text-white">Login</a>
+				</div>
+				<div class="col-md-3 btn btn-danger">
+					<a href="#" class="text-white">User Guide</a>
+				</div>
+				<div class="col-md-3 btn btn-danger">
+					<a href="#" class="text-white">About</a>
+				</div>
+			</div>
+	</div>
+	<br>
+	
+	<div class="container">
+		<div class="row">
+			<div class="btn btn-success col-md-2"><a href="/courseForm" class="text-white">Add new course</a></div>
+			<div class="btn btn-success col-md-2"><a href="/back" class="text-white">Back</a></div>
+		</div>
+	</div>
+	<br>
+	<div class="container">
+		<div class="error text-danger">
+			<span th:text="${errorMessage}"></span>
+		</div>
+		<div class="success text-success">
+			<span th:text="${successMessage}"></span>
+		</div>
+	</div>
+	<br>
+			<div class="container">
+		
+			<h4>PGD First Semester Core Courses</h4>
+			<div class="table-response" th:switch="${courses}">
+				<table class="table table-striped table-bordered text-left">
+					<thead><tr>
+						<th>S/N</th>
+						<th>Course Title</th>
+						<th>Course Code</th>
+						<th>Semester</th>
+						<th>Level</th>
+						<th>Credit Unit</th>
+						<th>Session</th>
+						<th>Course Type</th>
+						<th>Department</th>
+						<th>Course Allocation</th>
+						<th></th>
+						<th></th>
+					</tr></thead>
+					<tbody>
+						<tr th:each ="pgdCoreFirsts : ${pgdCoreFirst}">
+               <td></td>
+               <td th:utext="${pgdCoreFirsts.courseTitle}">...</td>
+               <td th:utext="${pgdCoreFirsts.courseCode}">...</td>
+               <td th:utext="${pgdCoreFirsts.semester}">...</td>
+               <td th:utext="${pgdCoreFirsts.level}">...</td>
+               <td th:utext="${pgdCoreFirsts.creditUnit}">...</td>
+               <td th:utext="${pgdCoreFirsts.courseSession}">...</td>
+               <td th:utext="${pgdCoreFirsts.courseType}">...</td>
+               <td th:utext="${pgdCoreFirsts.department}">...</td>
+               <td th:utext="${pgdCoreFirsts.courseAllocation}">...</td>
+               <td><a th:href="@{/editCourse/{courseId}(courseId=${pgdCoreFirsts.courseId})}">Edit</a></td>
+			   <td><a th:href="@{/deleteCourse/{courseId}(courseId=${pgdCoreFirsts.courseId})}">Delete</a></td>
+            </tr>
+            <thead>
+			<tr >
+				<th colspan="12">PGD First Semester Elective Courses</th>
+			</tr></thead>	
+			<tr th:each ="pgdElectiveFirsts : ${pgdElectiveFirst}">
+               <td></td>
+               <td th:utext="${pgdElectiveFirsts.courseTitle}">...</td>
+               <td th:utext="${pgdElectiveFirsts.courseCode}">...</td>
+               <td th:utext="${pgdElectiveFirsts.semester}">...</td>
+               <td th:utext="${pgdElectiveFirsts.level}">...</td>
+               <td th:utext="${pgdElectiveFirsts.creditUnit}">...</td>
+               <td th:utext="${pgdElectiveFirsts.courseSession}">...</td>
+               <td th:utext="${pgdElectiveFirsts.courseType}">...</td>
+               <td th:utext="${pgdElectiveFirsts.department}">...</td>
+               <td th:utext="${pgdElectiveFirsts.courseAllocation}">...</td>
+               <td><a th:href="@{/editCourse/{courseId}(courseId=${pgdElectiveFirsts.courseId})}">Edit</a></td>
+			   <td><a th:href="@{/deleteCourse/{courseId}(courseId=${pgdElectiveFirsts.courseId})}">Delete</a></td>
+            </tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<h4>PGD Second Semester Core Courses</h4>
+			<div class="table-response" th:switch="${courses}">
+				<table class="table table-striped table-bordered text-left">
+					<thead><tr>
+						<th>S/N</th>
+						<th>Course Title</th>
+						<th>Course Code</th>
+						<th>Semester</th>
+						<th>Level</th>
+						<th>Credit Unit</th>
+						<th>Session</th>
+						<th>Course Type</th>
+						<th>Department</th>
+						<th>Course Allocation</th>
+						<th></th>
+						<th></th>
+					</tr></thead>
+					<tbody>
+						<tr th:each ="pgdCoreSeconds : ${pgdCoreSecond}">
+               <td></td>
+               <td th:utext="${pgdCoreSeconds.courseTitle}">...</td>
+               <td th:utext="${pgdCoreSeconds.courseCode}">...</td>
+               <td th:utext="${pgdCoreSeconds.semester}">...</td>
+               <td th:utext="${pgdCoreSeconds.level}">...</td>
+               <td th:utext="${pgdCoreSeconds.creditUnit}">...</td>
+               <td th:utext="${pgdCoreSeconds.courseSession}">...</td>
+               <td th:utext="${pgdCoreSeconds.courseType}">...</td>
+               <td th:utext="${pgdCoreSeconds.department}">...</td>
+               <td th:utext="${pgdCoreSeconds.courseAllocation}">...</td>
+               <td><a th:href="@{/editCourse/{courseId}(courseId=${pgdCoreSeconds.courseId})}">Edit</a></td>
+			   <td><a th:href="@{/deleteCourse/{courseId}(courseId=${pgdCoreSeconds.courseId})}">Delete</a></td>
+            </tr>
+            <thead>
+			<tr >
+				<th colspan="12">PGD Second Semester Elective Courses</th>
+			</tr></thead>
+			<tr th:each ="pgdElectiveSeconds : ${pgdElectiveSecond}">
+               <td></td>
+               <td th:utext="${pgdElectiveSeconds.courseTitle}">...</td>
+               <td th:utext="${pgdElectiveSeconds.courseCode}">...</td>
+               <td th:utext="${pgdElectiveSeconds.semester}">...</td>
+               <td th:utext="${pgdElectiveSeconds.level}">...</td>
+               <td th:utext="${pgdElectiveSeconds.creditUnit}">...</td>
+               <td th:utext="${pgdElectiveSeconds.courseSession}">...</td>
+               <td th:utext="${pgdElectiveSeconds.courseType}">...</td>
+               <td th:utext="${pgdElectiveSeconds.department}">...</td>
+               <td th:utext="${pgdElectiveSeconds.courseAllocation}">...</td>
+               <td><a th:href="@{/editCourse/{courseId}(courseId=${pgdElectiveSeconds.courseId})}">Edit</a></td>
+			   <td><a th:href="@{/deleteCourse/{courseId}(courseId=${pgdElectiveSeconds.courseId})}">Delete</a></td>
+            </tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<h4>MSC First Semester Core Courses</h4>
+			<div class="table-response" th:switch="${courses}">
+				<table class="table table-striped table-bordered text-left">
+					<thead><tr>
+						<th>S/N</th>
+						<th>Course Title</th>
+						<th>Course Code</th>
+						<th>Semester</th>
+						<th>Level</th>
+						<th>Credit Unit</th>
+						<th>Session</th>
+						<th>Course Type</th>
+						<th>Department</th>
+						<th>Course Allocation</th>
+						<th></th>
+						<th></th>
+					</tr></thead>
+					<tbody>
+						<tr th:each ="mscCoreFirsts : ${mscCoreFirst}">
+               <td></td>
+               <td th:utext="${mscCoreFirsts.courseTitle}">...</td>
+               <td th:utext="${mscCoreFirsts.courseCode}">...</td>
+               <td th:utext="${mscCoreFirsts.semester}">...</td>
+               <td th:utext="${mscCoreFirsts.level}">...</td>
+               <td th:utext="${mscCoreFirsts.creditUnit}">...</td>
+               <td th:utext="${mscCoreFirsts.courseSession}">...</td>
+               <td th:utext="${mscCoreFirsts.courseType}">...</td>
+               <td th:utext="${mscCoreFirsts.department}">...</td>
+               <td th:utext="${mscCoreFirsts.courseAllocation}">...</td>
+               <td><a th:href="@{/editCourse/{courseId}(courseId=${mscCoreFirsts.courseId})}">Edit</a></td>
+			   <td><a th:href="@{/deleteCourse/{courseId}(courseId=${mscCoreFirsts.courseId})}">Delete</a></td>
+            </tr>
+			<thead>
+			<tr >
+				<th colspan="12">MSC First Semester Elective Courses</th>
+			</tr></thead>
+			<tr th:each ="mscElectiveFirsts : ${mscElectiveFirst}">
+               <td></td>
+               <td th:utext="${mscElectiveFirsts.courseTitle}">...</td>
+               <td th:utext="${mscElectiveFirsts.courseCode}">...</td>
+               <td th:utext="${mscElectiveFirsts.semester}">...</td>
+               <td th:utext="${mscElectiveFirsts.level}">...</td>
+               <td th:utext="${mscElectiveFirsts.creditUnit}">...</td>
+               <td th:utext="${mscElectiveFirsts.courseSession}">...</td>
+               <td th:utext="${mscElectiveFirsts.courseType}">...</td>
+               <td th:utext="${mscElectiveFirsts.department}">...</td>
+               <td th:utext="${mscElectiveFirsts.courseAllocation}">...</td>
+               <td><a th:href="@{/editCourse/{courseId}(courseId=${mscElectiveFirsts.courseId})}">Edit</a></td>
+			   <td><a th:href="@{/deleteCourse/{courseId}(courseId=${mscElectiveFirsts.courseId})}">Delete</a></td>
+            </tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<h4>MSC Second Semester Core Courses</h4>
+			<div class="table-response" th:switch="${courses}">
+				<table class="table table-striped table-bordered text-left">
+					<thead><tr>
+						<th>S/N</th>
+						<th>Course Title</th>
+						<th>Course Code</th>
+						<th>Semester</th>
+						<th>Level</th>
+						<th>Credit Unit</th>
+						<th>Session</th>
+						<th>Course Type</th>
+						<th>Department</th>
+						<th>Course Allocation</th>
+						<th></th>
+						<th></th>
+					</tr></thead>
+					<tbody>
+						<tr th:each ="mscCoreSeconds : ${mscCoreSecond}">
+               <td></td>
+               <td th:utext="${mscCoreSeconds.courseTitle}">...</td>
+               <td th:utext="${mscCoreSeconds.courseCode}">...</td>
+               <td th:utext="${mscCoreSeconds.semester}">...</td>
+               <td th:utext="${mscCoreSeconds.level}">...</td>
+               <td th:utext="${mscCoreSeconds.creditUnit}">...</td>
+               <td th:utext="${mscCoreSeconds.courseSession}">...</td>
+               <td th:utext="${mscCoreSeconds.courseType}">...</td>
+               <td th:utext="${mscCoreSeconds.department}">...</td>
+               <td th:utext="${mscCoreSeconds.courseAllocation}">...</td>
+               <td><a th:href="@{/editCourse/{courseId}(courseId=${mscCoreSeconds.courseId})}">Edit</a></td>
+			   <td><a th:href="@{/deleteCourse/{courseId}(courseId=${mscCoreSeconds.courseId})}">Delete</a></td>
+            </tr>
+			<thead>
+			<tr >
+				<th colspan="12">MSC Second Semester Elective Courses</th>
+			</tr></thead>
+			<tr th:each ="mscElectiveSeconds : ${mscElectiveSecond}">
+               <td></td>
+               <td th:utext="${mscElectiveSeconds.courseTitle}">...</td>
+               <td th:utext="${mscElectiveSeconds.courseCode}">...</td>
+               <td th:utext="${mscElectiveSeconds.semester}">...</td>
+               <td th:utext="${mscElectiveSeconds.level}">...</td>
+               <td th:utext="${mscElectiveSeconds.creditUnit}">...</td>
+               <td th:utext="${mscElectiveSeconds.courseSession}">...</td>
+               <td th:utext="${mscElectiveSeconds.courseType}">...</td>
+               <td th:utext="${mscElectiveSeconds.department}">...</td>
+               <td th:utext="${mscElectiveSeconds.courseAllocation}">...</td>
+               <td><a th:href="@{/editCourse/{courseId}(courseId=${mscElectiveSeconds.courseId})}">Edit</a></td>
+			   <td><a th:href="@{/deleteCourse/{courseId}(courseId=${mscElectiveSeconds.courseId})}">Delete</a></td>
+            </tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<h4>PhD First Semester Core Courses</h4>
+			<div class="table-response" th:switch="${courses}">
+				<table class="table table-striped table-bordered text-left">
+					<thead><tr>
+						<th>S/N</th>
+						<th>Course Title</th>
+						<th>Course Code</th>
+						<th>Semester</th>
+						<th>Level</th>
+						<th>Credit Unit</th>
+						<th>Session</th>
+						<th>Course Type</th>
+						<th>Department</th>
+						<th>Course Allocation</th>
+						<th></th>
+						<th></th>
+					</tr></thead>
+					<tbody>
+						<tr th:each ="phdCoreFirsts : ${phdCoreFirst}">
+               <td></td>
+               <td th:utext="${phdCoreFirsts.courseTitle}">...</td>
+               <td th:utext="${phdCoreFirsts.courseCode}">...</td>
+               <td th:utext="${phdCoreFirsts.semester}">...</td>
+               <td th:utext="${phdCoreFirsts.level}">...</td>
+               <td th:utext="${phdCoreFirsts.creditUnit}">...</td>
+               <td th:utext="${phdCoreFirsts.courseSession}">...</td>
+               <td th:utext="${phdCoreFirsts.courseType}">...</td>
+               <td th:utext="${phdCoreFirsts.department}">...</td>
+               <td th:utext="${phdCoreFirsts.courseAllocation}">...</td>
+               <td><a th:href="@{/editCourse/{courseId}(courseId=${phdCoreFirsts.courseId})}">Edit</a></td>
+			   <td><a th:href="@{/deleteCourse/{courseId}(courseId=${phdCoreFirsts.courseId})}">Delete</a></td>
+            </tr>
+			<thead>
+			<tr>
+				<th colspan="12">PhD First Semester Elective Courses</th>
+			</tr></thead>
+			<tr th:each ="phdElectiveFirsts : ${phdElectiveFirst}">
+               <td></td>
+               <td th:utext="${phdElectiveFirsts.courseTitle}">...</td>
+               <td th:utext="${phdElectiveFirsts.courseCode}">...</td>
+               <td th:utext="${phdElectiveFirsts.semester}">...</td>
+               <td th:utext="${phdElectiveFirsts.level}">...</td>
+               <td th:utext="${phdElectiveFirsts.creditUnit}">...</td>
+               <td th:utext="${phdElectiveFirsts.courseSession}">...</td>
+               <td th:utext="${phdElectiveFirsts.courseType}">...</td>
+               <td th:utext="${phdElectiveFirsts.department}">...</td>
+               <td th:utext="${phdElectiveFirsts.courseAllocation}">...</td>
+               <td><a th:href="@{/editCourse/{courseId}(courseId=${phdElectiveFirsts.courseId})}">Edit</a></td>
+			   <td><a th:href="@{/deleteCourse/{courseId}(courseId=${phdElectiveFirsts.courseId})}">Delete</a></td>
+            </tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<h4>PhD Second Semester Core Courses</h4>
+			<div class="table-response" th:switch="${courses}">
+				<table class="table table-striped table-bordered text-left">
+					<thead><tr>
+						<th>S/N</th>
+						<th>Course Title</th>
+						<th>Course Code</th>
+						<th>Semester</th>
+						<th>Level</th>
+						<th>Credit Unit</th>
+						<th>Session</th>
+						<th>Course Type</th>
+						<th>Department</th>
+						<th>Course Allocation</th>
+						<th></th>
+						<th></th>
+					</tr></thead>
+					<tbody>
+						<tr th:each ="phdCoreSeconds : ${phdCoreSecond}">
+               <td></td>
+               <td th:utext="${phdCoreSeconds.courseTitle}">...</td>
+               <td th:utext="${phdCoreSeconds.courseCode}">...</td>
+               <td th:utext="${phdCoreSeconds.semester}">...</td>
+               <td th:utext="${phdCoreSeconds.level}">...</td>
+               <td th:utext="${phdCoreSeconds.creditUnit}">...</td>
+               <td th:utext="${phdCoreSeconds.courseSession}">...</td>
+               <td th:utext="${phdCoreSeconds.courseType}">...</td>
+               <td th:utext="${phdCoreSeconds.department}">...</td>
+               <td th:utext="${phdCoreSeconds.courseAllocation}">...</td>
+               <td><a th:href="@{/editCourse/{courseId}(courseId=${phdCoreSeconds.courseId})}">Edit</a></td>
+			   <td><a th:href="@{/deleteCourse/{courseId}(courseId=${phdCoreSeconds.courseId})}">Delete</a></td>
+            </tr>
+			<thead>
+			<tr>
+				<th colspan="12">PhD Second Semester Elective Courses</th>
+			</tr></thead>
+			<tr th:each ="phdElectiveSeconds : ${phdElectiveSecond}">
+               <td></td>
+               <td th:utext="${phdElectiveSeconds.courseTitle}">...</td>
+               <td th:utext="${phdElectiveSeconds.courseCode}">...</td>
+               <td th:utext="${phdElectiveSeconds.semester}">...</td>
+               <td th:utext="${phdElectiveSeconds.level}">...</td>
+               <td th:utext="${phdElectiveSeconds.creditUnit}">...</td>
+               <td th:utext="${phdElectiveSeconds.courseSession}">...</td>
+               <td th:utext="${phdElectiveSeconds.courseType}">...</td>
+               <td th:utext="${phdElectiveSeconds.department}">...</td>
+               <td th:utext="${phdElectiveSeconds.courseAllocation}">...</td>
+               <td><a th:href="@{/editCourse/{courseId}(courseId=${phdElectiveSeconds.courseId})}">Edit</a></td>
+			   <td><a th:href="@{/deleteCourse/{courseId}(courseId=${phdElectiveSeconds.courseId})}">Delete</a></td>
+            </tr>
+					</tbody>
+				</table>
+			</div>
+			
+		</div>
+	
+		
+		
+		
+	<div class="container">
+      <footer class="jumbotron my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2017-2018 Company Name</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Privacy</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+      </footer></div>
+    
+	<script	src="js/jquery-3.3.1.js"></script>
+	<script>window.jQuery || document.write('<script src="js/jquery-3.3.1.js"><\/script>')</script>				
+	<script	src="js/bootstrap.js"></script>
+	<script src="js/bootstrap.min.js"></script>	
+	<script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+    </script>	
+</body> 
+</html>
